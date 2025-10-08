@@ -1,0 +1,29 @@
+---
+interface DemoLink {
+  href: string
+  label: string
+}
+
+const demoLinks :DemoLink[] = [
+  { href: "/demos/css-scroll-snap", label: "CSS Scroll Snap（純CSS）" },
+  { href: "/demos/swiper", label: "Swiper（多機能）" },
+  { href: "/demos/pointer-events-drag", label: "JavaScript実装（Pointer Events）" },
+];
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Swipe Method Playground</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1>Swipe Method Playground</h1>
+    <p>LPで使うスワイプUIの実装パターンをテストするデモリンク</p>
+    <ul>
+      {demoLinks.map((p) => (
+        <li><a href={p.href}>{p.label}</a></li>
+      ))}
+    </ul>
+  </body>
+</html>
