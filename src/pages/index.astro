@@ -1,12 +1,13 @@
 ---
 import SwiperDecks from "../components/SwiperDecks.astro";
 import Deck from "../components/Deck.astro";
-import LPlayout from "../layouts/LPlayout.astro";
+import SwipeLPLayout from "../layouts/SwipeLPLayout.astro";
 ---
-<LPlayout>
+<SwipeLPLayout>
   <SwiperDecks>
     <Deck>
       <video
+        class="video-content"
         autoplay
         loop
         muted
@@ -16,6 +17,7 @@ import LPlayout from "../layouts/LPlayout.astro";
     </Deck>
     <Deck>
       <video
+        class="video-content"
         autoplay
         loop
         muted
@@ -25,6 +27,7 @@ import LPlayout from "../layouts/LPlayout.astro";
     </Deck>
     <Deck>
       <video
+        class="video-content"
         autoplay
         loop
         muted
@@ -34,6 +37,7 @@ import LPlayout from "../layouts/LPlayout.astro";
     </Deck>
     <Deck>
       <video
+        class="video-content"
         autoplay
         loop
         muted
@@ -42,4 +46,11 @@ import LPlayout from "../layouts/LPlayout.astro";
       ></video>
     </Deck>
   </SwiperDecks>
-</LPlayout>
+</SwipeLPLayout>
+
+<style>
+  .video-content {
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
