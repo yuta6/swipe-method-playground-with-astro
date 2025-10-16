@@ -4,13 +4,17 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 ---
 
-<div data-swiper>
+<div class="deck-container" data-swiper>
   <ul class="deck swiper-wrapper" role="list" aria-roledescription="carousel">
     <slot />
   </ul>
 </div>
 
 <style>
+  .deck-container {
+    height: 100vh;
+    overflow: hidden;
+  }
   .deck {
     height: 100vh;
   }
