@@ -1,57 +1,27 @@
 ---
-import SwiperDecks from "@/components/libs/SwiperDecks.astro";
+import SwiperDecks from "@/components/libs/VerticalDecks.astro";
 import Deck from "@/components/libs/Deck.astro";
 import SwipeLPLayout from "@/layouts/SwipeLPLayout.astro";
----
+import Hero from "@/components/contents/Hero.astro";
+import TourActivity from "@/components/contents/TourActivity.astro";
+import TourByPlane from "@/components/contents/TourByPlane.astro";
+import TourHotel from "@/components/contents/TourHotel.astro";
 
+---
 <SwipeLPLayout>
   <SwiperDecks>
     <Deck>
-      <video
-        class="video-content"
-        autoplay
-        loop
-        muted
-        playsinline
-        src="https://tokify-prod.s3.ap-northeast-1.amazonaws.com/upload_images/compresssed_movie/20240508_144356_590983745.mp4"
-      ></video>
+      <Hero />
     </Deck>
     <Deck>
-      <video
-        class="video-content"
-        autoplay
-        loop
-        muted
-        playsinline
-        src="https://tokify-prod.s3.ap-northeast-1.amazonaws.com/upload_images/compresssed_movie/20240508_115248_199205070.mp4"
-      ></video>
+      <TourActivity />
     </Deck>
     <Deck>
-      <video
-        class="video-content"
-        autoplay
-        loop
-        muted
-        playsinline
-        src="https://tokify-prod.s3.ap-northeast-1.amazonaws.com/upload_images/compresssed_movie/20240508_111104_506436451.mp4"
-      ></video>
+      <TourByPlane />
     </Deck>
     <Deck>
-      <video
-        class="video-content"
-        autoplay
-        loop
-        muted
-        playsinline
-        src="https://tokify-prod.s3.ap-northeast-1.amazonaws.com/upload_images/compresssed_movie/20240508_111155_400845694.mp4"
-      ></video>
+      <TourHotel />
     </Deck>
   </SwiperDecks>
 </SwipeLPLayout>
 
-<style>
-  .video-content {
-    height: 100%;
-    object-fit: cover;
-  }
-</style>
