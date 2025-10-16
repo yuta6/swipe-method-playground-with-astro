@@ -1,9 +1,26 @@
 ---
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination"; 
 ---
-<ul class="swiper-decks" role="list" aria-roledescription="carousel">
-  <slot />
-</ul>
+<div data-swiper>
+  <ul  class="deck swiper-wrapper" role="list" aria-roledescription="carousel">
+    <slot />
+  </ul>
+</div>
 
 <style>
-
+  .deck {
+    height: 100vh;
+  }
 </style>
+
+<script>
+  import { Swiper } from 'swiper';
+
+  new Swiper('[data-swiper]', {
+    direction: 'vertical',        // 縦方向（横なら 'horizontal'）
+    slidesPerView: 1,             // 1つだけ表示
+    spaceBetween: 0,              // 隙間なし  
+  });
+</script>
