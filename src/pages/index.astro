@@ -1,15 +1,16 @@
 ---
-import SwiperDecks from "@/components/libs/VerticalDecks.astro";
+import VerticalDecks from "@/components/libs/VerticalDecks.astro";
 import Deck from "@/components/libs/Deck.astro";
 import SwipeLPLayout from "@/layouts/SwipeLPLayout.astro";
 import Hero from "@/components/contents/Hero.astro";
 import TourActivity from "@/components/contents/TourActivity.astro";
 import TourByPlane from "@/components/contents/TourByPlane.astro";
 import TourHotel from "@/components/contents/TourHotel.astro";
+import ReserveButton from "@/components/contents/ReserveButton.astro";
 
 ---
 <SwipeLPLayout>
-  <SwiperDecks>
+  <VerticalDecks>
     <Deck>
       <Hero />
     </Deck>
@@ -22,6 +23,7 @@ import TourHotel from "@/components/contents/TourHotel.astro";
     <Deck>
       <TourHotel />
     </Deck>
-  </SwiperDecks>
+    <ReserveButton slot="overlay" /> 
+  </VerticalDecks>
 </SwipeLPLayout>
 
