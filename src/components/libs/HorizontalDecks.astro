@@ -4,7 +4,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 ---
 
-<div class="deck-container" data-swiper="horizontal">
+<div class="swiper deck-container" data-swiper="horizontal">
   <ul class="swiper-wrapper decks" role="list" aria-roledescription="carousel">
     <slot />
   </ul>
@@ -18,6 +18,7 @@ import "swiper/css/pagination";
 
 <script>
   import { Swiper } from "swiper";
+  import { Mousewheel } from "swiper/modules";
 
   document
     .querySelectorAll('[data-swiper="horizontal"]')
@@ -26,11 +27,17 @@ import "swiper/css/pagination";
         return;
       }
       new Swiper(container, {
+        modules: [Mousewheel],
         direction: "horizontal",
         slidesPerView: 1,
         spaceBetween: 0,
         nested: true,
         touchReleaseOnEdges: true,  
+        mousewheel: {
+          enabled: true,
+          forceToAxis: true,  // 縦軸のみ認識
+          thresholdDelta: 10,  // スクロール量の閾値を上げる
+        },
       });
     });
 </script>
