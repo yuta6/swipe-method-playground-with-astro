@@ -4,7 +4,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 ---
 
-<div class="deck-container" data-swiper="vertical">
+<div class="deck-container" data-swiper="horizontal">
   <ul class="deck swiper-wrapper" role="list" aria-roledescription="carousel">
     <slot />
   </ul>
@@ -13,7 +13,6 @@ import "swiper/css/pagination";
 <style>
   .deck-container {
     height: 100vh;
-    overflow: hidden;
   }
   .deck {
     height: 100vh;
@@ -24,15 +23,16 @@ import "swiper/css/pagination";
   import { Swiper } from "swiper";
 
   document
-    .querySelectorAll('[data-swiper="vertical"]')
+    .querySelectorAll('[data-swiper="horizontal"]')
     .forEach((container) => {
       if (!(container instanceof HTMLElement)) {
         return;
       }
       new Swiper(container, {
-        direction: "vertical",
+        direction: "horizontal",
         slidesPerView: 1,
         spaceBetween: 0,
+        nested: true,
       });
     });
 </script>
