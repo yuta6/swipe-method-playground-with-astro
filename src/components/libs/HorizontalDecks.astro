@@ -5,17 +5,14 @@ import "swiper/css/pagination";
 ---
 
 <div class="deck-container" data-swiper="horizontal">
-  <ul class="deck swiper-wrapper" role="list" aria-roledescription="carousel">
+  <ul class="swiper-wrapper decks" role="list" aria-roledescription="carousel">
     <slot />
   </ul>
 </div>
 
 <style>
   .deck-container {
-    height: 100vh;
-  }
-  .deck {
-    height: 100vh;
+      width: calc(100vh * 9 / 16);
   }
 </style>
 

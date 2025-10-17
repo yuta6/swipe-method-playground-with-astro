@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 ---
 
 <div class="deck-container" data-swiper="vertical">
-  <ul class="deck swiper-wrapper" role="list" aria-roledescription="carousel">
+  <ul class="swiper-wrapper decks" role="list" aria-roledescription="carousel">
     <slot />
   </ul>
 </div>
@@ -15,7 +15,7 @@ import "swiper/css/pagination";
     height: 100vh;
     overflow: hidden;
   }
-  .deck {
+  .decks {
     height: 100vh;
   }
 </style>
