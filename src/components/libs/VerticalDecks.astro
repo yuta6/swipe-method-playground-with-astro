@@ -1,13 +1,21 @@
 ---
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
+import VerticalPagination from "./VerticalPagination.astro";
+
+interface Props {
+  showPagination?: boolean;
+}
+
+const { showPagination = false } = Astro.props;
 ---
 
 <div class="deck-container swiper" data-swiper="vertical">
   <ul class="deck swiper-wrapper" role="list" aria-roledescription="carousel">
     <slot />
   </ul>
+
+  {showPagination && <VerticalPagination />}
 
   <div class="overlay-layer">
     <slot name="overlay" />
@@ -37,46 +45,52 @@ import "swiper/css/pagination";
 
 <script>
   import { Swiper } from "swiper";
-  import { Mousewheel } from "swiper/modules";
+  import { Mousewheel, Pagination } from "swiper/modules";
 
-  document
-    .querySelectorAll('[data-swiper="vertical"]')
-    .forEach((container) => {
-      if (!(container instanceof HTMLElement)) {
-        return;
-      }
+  document.querySelectorAll('[data-swiper="vertical"]').forEach((container) => {
+    if (!(container instanceof HTMLElement)) {
+      return;
+    }
 
-      new Swiper(container, {
-        modules: [Mousewheel],
-        direction: "vertical",
-        slidesPerView: 1,
-        spaceBetween: 0,
-        mousewheel: {
-          enabled: true,
-          forceToAxis: true,  // 横軸のみ認識
-          thresholdDelta: 10,  // スクロール量の閾値を上げる
+    const paginationEl = container.querySelector(".vertical-pagination");
+
+    new Swiper(container, {
+      modules: [Mousewheel, Pagination],
+      direction: "vertical",
+      slidesPerView: 1,
+      spaceBetween: 0,
+      mousewheel: {
+        enabled: true,
+        forceToAxis: true,
+        thresholdDelta: 10,
+      },
+      touchReleaseOnEdges: true,
+      pagination: paginationEl ? {
+        el: paginationEl as HTMLElement,
+        type: 'fraction',
+      } : undefined,
+      on: {
+        slideChange: () => {
+          // 全ての動画の再生位置をリセット
+          const allVideos = container.querySelectorAll("video");
+          allVideos.forEach((video) => {
+            if (video instanceof HTMLVideoElement) {
+              video.currentTime = 0;
+            }
+          });
+
+          // 全てのHorizontalDecksを最初のスライドに戻す
+          const horizontalSwipers = container.querySelectorAll(
+            '[data-swiper="horizontal"]'
+          );
+          horizontalSwipers.forEach((horizontalContainer: any) => {
+            const horizontalSwiper = horizontalContainer.swiper;
+            if (horizontalSwiper) {
+              horizontalSwiper.slideTo(0, 0);
+            }
+          });
         },
-        touchReleaseOnEdges: true,
-        on: {
-          slideChange: () => {
-            // 全ての動画の再生位置をリセット
-            const allVideos = container.querySelectorAll('video');
-            allVideos.forEach((video) => {
-              if (video instanceof HTMLVideoElement) {
-                video.currentTime = 0;
-              }
-            });
-
-            // 全てのHorizontalDecksを最初のスライドに戻す
-            const horizontalSwipers = container.querySelectorAll('[data-swiper="horizontal"]');
-            horizontalSwipers.forEach((horizontalContainer: any) => {
-              const horizontalSwiper = horizontalContainer.swiper;
-              if (horizontalSwiper) {
-                horizontalSwiper.slideTo(0, 0);
-              }
-            });
-          }
-        }
-      });
+      },
     });
+  });
 </script>

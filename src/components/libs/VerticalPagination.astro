@@ -1,0 +1,31 @@
+---
+---
+
+<div class="swiper-pagination vertical-pagination"></div>
+
+<style>
+  :global(.vertical-pagination) {
+    right: 50% !important;
+    top: 45% !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: translate(50%, -50%) !important;
+    width: auto !important;
+    padding: 12px 24px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 30px;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+  }
+
+  :global(.vertical-pagination .swiper-pagination-current) {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  :global(.vertical-pagination .swiper-pagination-total) {
+    font-size: 28px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+  }
+</style>

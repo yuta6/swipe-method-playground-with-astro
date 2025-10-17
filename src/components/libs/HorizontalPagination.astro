@@ -1,0 +1,29 @@
+---
+---
+
+<div class="swiper-pagination horizontal-pagination"></div>
+
+<style>
+  :global(.horizontal-pagination) {
+    top: 40% !important;
+    bottom: auto !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  :global(.horizontal-pagination .swiper-pagination-bullet) {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+    margin: 0 6px !important;
+    transition: all 0.3s ease;
+  }
+
+  :global(.horizontal-pagination .swiper-pagination-bullet-active) {
+    background: #fff;
+    width: 12px;
+    height: 12px;
+  }
+</style>

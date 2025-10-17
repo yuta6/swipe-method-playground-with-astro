@@ -10,7 +10,7 @@ import ReserveButton from "@/components/contents/ReserveButton.astro";
 
 ---
 <SwipeLPLayout>
-  <VerticalDecks>
+  <VerticalDecks showPagination={true}>
     <Deck>
       <Hero />
     </Deck>
@@ -23,7 +23,7 @@ import ReserveButton from "@/components/contents/ReserveButton.astro";
     <Deck>
       <TourHotel />
     </Deck>
-    <ReserveButton slot="overlay" /> 
+    <ReserveButton slot="overlay" />
   </VerticalDecks>
 </SwipeLPLayout>
 

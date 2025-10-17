@@ -1,13 +1,21 @@
 ---
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
+import HorizontalPagination from "./HorizontalPagination.astro";
+
+interface Props {
+  showPagination?: boolean;
+}
+
+const { showPagination = false } = Astro.props;
 ---
 
 <div class="swiper deck-container" data-swiper="horizontal">
   <ul class="swiper-wrapper decks" role="list" aria-roledescription="carousel">
     <slot />
   </ul>
+
+  {showPagination && <HorizontalPagination />}
 
   <div class="overlay-layer">
     <slot name="overlay" />
@@ -33,7 +41,7 @@ import "swiper/css/pagination";
 
 <script>
   import { Swiper } from "swiper";
-  import { Mousewheel } from "swiper/modules";
+  import { Mousewheel, Pagination } from "swiper/modules";
 
   document
     .querySelectorAll('[data-swiper="horizontal"]')
@@ -41,8 +49,10 @@ import "swiper/css/pagination";
       if (!(container instanceof HTMLElement)) {
         return;
       }
+      const paginationEl = container.querySelector(".horizontal-pagination");
+
       new Swiper(container, {
-        modules: [Mousewheel],
+        modules: [Mousewheel, Pagination],
         direction: "horizontal",
         slidesPerView: 1,
         spaceBetween: 0,
@@ -53,17 +63,21 @@ import "swiper/css/pagination";
           forceToAxis: true,
           thresholdDelta: 10,
         },
+        pagination: paginationEl ? {
+          el: paginationEl as HTMLElement,
+          clickable: true,
+        } : undefined,
         on: {
           slideChange: () => {
             // 全ての動画の再生位置をリセット
-            const allVideos = container.querySelectorAll('video');
+            const allVideos = container.querySelectorAll("video");
             allVideos.forEach((video) => {
               if (video instanceof HTMLVideoElement) {
                 video.currentTime = 0;
               }
             });
-          }
-        }
+          },
+        },
       });
     });
 </script>
