@@ -45,6 +45,7 @@ import "swiper/css/pagination";
       if (!(container instanceof HTMLElement)) {
         return;
       }
+
       new Swiper(container, {
         modules: [Mousewheel],
         direction: "vertical",
@@ -54,8 +55,28 @@ import "swiper/css/pagination";
           enabled: true,
           forceToAxis: true,  // 横軸のみ認識
           thresholdDelta: 10,  // スクロール量の閾値を上げる
-        },        
+        },
         touchReleaseOnEdges: true,
+        on: {
+          slideChange: () => {
+            // 全ての動画の再生位置をリセット
+            const allVideos = container.querySelectorAll('video');
+            allVideos.forEach((video) => {
+              if (video instanceof HTMLVideoElement) {
+                video.currentTime = 0;
+              }
+            });
+
+            // 全てのHorizontalDecksを最初のスライドに戻す
+            const horizontalSwipers = container.querySelectorAll('[data-swiper="horizontal"]');
+            horizontalSwipers.forEach((horizontalContainer: any) => {
+              const horizontalSwiper = horizontalContainer.swiper;
+              if (horizontalSwiper) {
+                horizontalSwiper.slideTo(0, 0);
+              }
+            });
+          }
+        }
       });
     });
 </script>

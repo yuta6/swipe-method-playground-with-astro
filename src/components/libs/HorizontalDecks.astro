@@ -47,12 +47,23 @@ import "swiper/css/pagination";
         slidesPerView: 1,
         spaceBetween: 0,
         nested: true,
-        touchReleaseOnEdges: true,  
+        touchReleaseOnEdges: true,
         mousewheel: {
           enabled: true,
-          forceToAxis: true,  // 縦軸のみ認識
-          thresholdDelta: 10,  // スクロール量の閾値を上げる
+          forceToAxis: true,
+          thresholdDelta: 10,
         },
+        on: {
+          slideChange: () => {
+            // 全ての動画の再生位置をリセット
+            const allVideos = container.querySelectorAll('video');
+            allVideos.forEach((video) => {
+              if (video instanceof HTMLVideoElement) {
+                video.currentTime = 0;
+              }
+            });
+          }
+        }
       });
     });
 </script>
